@@ -1,5 +1,8 @@
 package com.codedifferently;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution {
 
     /**
@@ -13,8 +16,65 @@ public class Solution {
      * @return
      */
     public Boolean stringScramble(String str1, String str2) {
-        // code goes here
-        return null;
+
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : str1.toCharArray()) {
+            if (!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                int occurences = map.get(c);
+                map.put(c, ++occurences);
+            }
+        }
+
+        for (char c : str2.toCharArray()) {
+            if (!map.containsKey(c)) return false;
+            int occurences = map.get(c);
+            if (occurences <= 0) return false;
+            map.put(c, --occurences);
+        }
+        return true;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

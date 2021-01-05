@@ -2,6 +2,9 @@ package com.codedifferently;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Solution {
 
@@ -15,16 +18,12 @@ public class Solution {
      * @param str2
      * @return
      */
+
     public Boolean stringScramble(String str1, String str2) {
 
         Map<Character, Integer> map = new HashMap<>();
         for (char c : str1.toCharArray()) {
-            if (!map.containsKey(c)) {
-                map.put(c, 1);
-            } else {
-                int occurences = map.get(c);
-                map.put(c, ++occurences);
-            }
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
         for (char c : str2.toCharArray()) {
@@ -35,6 +34,27 @@ public class Solution {
         }
         return true;
     }
+//    public Boolean stringScramble(String str1, String str2) {
+//
+//        Map<Character, Integer> map = new HashMap<>();
+//        for (char c : str1.toCharArray()) {
+//            if (!map.containsKey(c)) {
+//                map.put(c, 1);
+//            } else {
+//                int occurences = map.get(c);
+//                map.put(c, ++occurences);
+//            }
+//
+//        }
+//
+//        for (char c : str2.toCharArray()) {
+//            if (!map.containsKey(c)) return false;
+//            int occurences = map.get(c);
+//            if (occurences <= 0) return false;
+//            map.put(c, --occurences);
+//        }
+//        return true;
+//    }
 }
 
 
